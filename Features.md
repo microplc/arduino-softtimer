@@ -1,46 +1,43 @@
-# Detailed description of the provided features #
+# 特征及详情 #
 
-If you want to have detailed documentation it is always a good idea to browse the code for comments. Aspecially suggested to read the header files, where you will find all the available features well documented.
-
-Here you will find some key features of the software explained.
+浏览代码和注释是了解文档详情的好主意，特别是读头文件，会找到所有的可用特征。这里是软件的一些关键特征：
 
 
 ## [Task](https://github.com/prampec/arduino-softtimer/blob/master/src/Task.h) ##
 
 
-Task is the basic building block of SoftTimer. A task defines a timing and a job. To be more precise, you need to specify the time of calling period, and the callback function to be called.
+任务是 SoftTimer 的最基本单元。一个任务定义一个时间和一项工作，更准确的说，你需要指定子程序运行周期时间和回调函数。
 
-The basic idea here, is that you will create a job in a callback method, that will be called each time the specified time was passed. Of course you always have the possibility to remove the Task from the timer manager in the job with `SoftTimer.remove(task)`, e.g. in case it is only need to be called once.
+基本思想就是，你创建一个回调方法代表一个任务，这个任务被定时调用和运行。当然你总是可以删除任务通过 `SoftTimer.remove(task)` 方法, 万一他只需要运行一次呢。
 
-Please take a look at the [Task.h](https://github.com/prampec/arduino-softtimer/blob/master/src/Task.h). You can see the constructor reflects the words above: you need to specify a timing period in milliseconds, and the callback function.
+请仔细浏览 [Task.h](https://github.com/prampec/arduino-softtimer/blob/master/src/Task.h) 。你可以看到语句关键词，你需要指定以 ms 为单位的时间周期和回调函数。
 
-You can also see in the header file, that the period can be changed later with `setPeriodMs(periodInMilliseconds)`. Further more, the period is stored in microseconds basis in a public property, that you are free to adjust.
+你也可以在头文件中看到周期也可以在后期调整通过 `setPeriodMs(periodInMilliseconds)` 。进一步说，时间周期以 ms 为单位，你可以自由调整。
 
-> In the task a nowMicros property also provided. The idea for this is that the timer manager already needs to check for the current microseconds, and your job might also interested in the current time. Checking the microseconds two times is a waste of cpu-cycles, so you can have it in this property for your own use.
+> 在任务中 nowMicros 属性被提供，它的意思是时间管理器已经需要检查当前的微秒数，你的程序一般也需要关注当前时间。检查微秒数两次是一个浪费CPU效率的事情，因此你可以利用这个属性。
 
-The time of the last calling occurrence also stored in a public property. You must understand, that the timer manager will call your job, when the **lastCallTimeMicros** plus the **periodMicros** is passed (added value is less than the actual time). Advanced developers might want to tweak the system by modifying the lastCallTimeMicros of a job (e.g. reset a countdown timer).
+回调发生的最后时间也储存在一个公共属性里，你需要理解的是，时间管理器将会调用你的任务当e **lastCallTimeMicros** 超过 **periodMicros** (添加的数值小于实际执行时间)。. 资深开发者会试图调整任务(e.g. 重置倒计时计时器)。
 
- > When you are about to use the SoftTimer module. You will find yourself, that you will like to write proper C++ code. The way to achieve this, is to inherit from the Task class, and define your job logic in this class. Separated from other logic and reusable. The following part of this documentation contains good example for that: all of these features are inherits Task. You might want to follow them as templates.
-**Note**: Arduino does not let you to pass class member methods, as function pointer. You always need to have a static function to act as a callback. This is why the Task is always passed to the callback method as parameter.
+ > 当你使用本模块时，你会发现你喜欢使用 C++ 代码。. 实现这一点的方法是从Task类继承，并从你的任务逻辑来定义类, 下面文档包括一些好的例子所有这些特征具有继承特性，你可以遵从模板来使用。
+**注意**: Arduino 不允许传递类成员方法，比如函数指针。你需要以静态函数扮演回调函数，这就是为什么总是传递回调方法作为参数的原因。
 
 
 ## [BlinkTask](https://github.com/prampec/arduino-softtimer/blob/master/src/BlinkTask.h) ##
 
 
-Every physical computing project starts with a blinking of a led.
-You often need to have an indicator that shows the state of your program.
+所有编程教学都是以闪烁LED来开始。你经常需要通过LED来指示程序状态。
 
-BlinkTask works in two mode:
-  * Perpetual mode - Blinks forever.
-  * Count mode - Blinks for an amount of occasion.
+BlinkTask 工作在两种模式：
+  * 不间断模式 - 永远闪烁
+  * 计数模式 - 闪烁一定的数量
 
-Perpetual mode has two kinds:
-  * On-Off repetition - Repeat on and off states.
-  * After a count of "on" times suspend for some time.
+不间断模式有两种：
+  * On-Off 重复两种状态
+  *"on" 一段时间暂停一段时间
 
-BlinkTask can work with on level of HIGH (default) or LOW.
+BlinkTask 任务工作级别为 HIGH (默认) or LOW.
 
-Use start() function to register the task in the Timer Manager, so start blinking. See [BlinkTask.h](https://github.com/prampec/arduino-softtimer/blob/master/src/BlinkTask.h) header file for details.
+使用 start() 函数来注册一个任务到时间管理器，启动一个闪烁详见 [BlinkTask.h](https://github.com/prampec/arduino-softtimer/blob/master/src/BlinkTask.h) 头文件
 
 ```
 #include <SoftTimer.h>
@@ -61,7 +58,7 @@ void setup() {
 ## [TonePlayer](https://github.com/prampec/arduino-softtimer/blob/master/src/TonePlayer.h) ##
 
 
-Tone player plays a melody on a specified output pin using the tone() and noTone() Arduino functions. You can specify the melody in quite tricky way, see [TonePlayer.h](https://github.com/prampec/arduino-softtimer/blob/master/src/TonePlayer.h) header file for details.
+音调播放者展示了一种方法在特定的引脚上输出音乐，使用 tone() 和 noTone() 函数。 你可以指定旋律以非常聪明的方式，详见 [TonePlayer.h](https://github.com/prampec/arduino-softtimer/blob/master/src/TonePlayer.h) 头文件
 
 ```
 #include <SoftTimer.h>
@@ -77,13 +74,13 @@ void setup(void)
 }
 ```
 
-Note, that you must take care to wait for the melody to finish before playing the next melody. Otherwise the next play will abort the previous melody. You may find the DelayRun task interesting.
+注意：你必须关注等一个曲调完成再开开始下一个曲调。否则下一个曲调会终止上一个曲调。你会听到非常有意思的音乐。
 
 
 
 ## [SoftPwmTask](https://github.com/prampec/arduino-softtimer/blob/master/src/SoftPwmTask.h) ##
 
-With this task you can add PWM functionality for pins that did not have hardware PWM. See [SoftPwmTask.h](https://github.com/prampec/arduino-softtimer/blob/master/src/SoftPwmTask.h) header file for details.
+通过这个任务你可以为引脚添加非硬件 PWM 功能， 详见 [SoftPwmTask.h](https://github.com/prampec/arduino-softtimer/blob/master/src/SoftPwmTask.h) 头文件
 
 ```
 #include <SoftTimer.h>
