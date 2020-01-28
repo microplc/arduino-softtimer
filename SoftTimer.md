@@ -1,6 +1,6 @@
 # 帮助 #
 
-You can download the actual version directly from the Arduino IDE, or from the [Releases page](https://github.com/prampec/arduino-softtimer/releases).
+你可以从 Arduino IDE 中下载发行版本，也可以到作者发行主页下载 [Releases page](https://github.com/prampec/arduino-softtimer/releases).
 
 
 # 上下文文档 #
