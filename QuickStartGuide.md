@@ -1,42 +1,42 @@
-# Quick-Start guide #
+# 快速上手导读 #
 
-##### 1. Include SoftTimer in your program.
+##### 1. 在你的程序中引入 SoftTimer 。
 ```
 #include <SoftTimer.h>
 ```
 
-##### 2. You need to create a Task with parameters of period (ms) and the callback function. E.g. callBack1 is to be called in every 2000 milliseconds (that is 2 seconds):
+##### 2. 你需要创建一个带时间（ms）参数的任务 Task 及其召唤函数。例子中 callBack1 将每经过 2000 被召唤执行一次。
 ```
 Task t1(2000, callBack1);
 
 void callBack1(Task* me) {
-  // -- my code comes here
+  // 你自己的代码
 }
 ```
 
-##### 3. Register your task to the SoftTimer (Timer Manager).
+##### 3. 注册你的任务 task 到 SoftTimer (时间管理器)
 ```
 void setup() {
   SoftTimer.add(&t1);
 }
 ```
 
-##### 4. You are finished. You may add more tasks, or use some bundled task implementations.
+##### 4. 你成功了。你可以添加更多的任务进去或使用捆绑任务声明
 
-Full code:
+完整代码：
 ```
 #include <SoftTimer.h>
 
-// -- taskOn will be launched on every 2 seconds.
+// -- taskOn 将会每2s触发一次
 Task taskOn(2000, turnOn);
-// -- taskOff will be launched on every 1111 milliseconds.
+// -- taskOff 将会每 1111ms 触发一次
 Task taskOff(1111, turnOff);
 
 void setup() {
   // -- Mark pin 13 as an output pin.
   pinMode(13, OUTPUT);
 
-  // -- Register the tasks to the timer manager. Both tasks will start immediately.
+  // -- 注册任务到时间管理器，所有的任务都会立即启动
   SoftTimer.add(&taskOn);
   SoftTimer.add(&taskOff);
 }
@@ -56,4 +56,4 @@ void turnOff(Task* me) {
 }
 ```
 
-Note, that the "loop()" method is absent form this full code. This is intended to be so!
+注意 "loop()" 方法已经被替代了。
