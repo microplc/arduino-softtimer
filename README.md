@@ -16,4 +16,4 @@ An **external dependency** PciManager library is required to compile the SoftTim
 
 The detailed documentation can be found here:
 
-# [Link to Documentation](https://github.com/microplc/arduino-softtimer/edit/master/SoftTimer.md) #
+# [Link to Documentation](https://github.com/microplc/arduino-softtimer/master/SoftTimer.md) #
