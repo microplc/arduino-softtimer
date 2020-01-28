@@ -4,6 +4,6 @@
 
 
 # 上下文文档 #
-  * [Quick-start guide](QuickStartGuide.md)
-  * [Why use SoftTimer and how does it work? ](WhyHow.md)
-  * [Detailed description of the provided features.](Features.md)
+  * [快速上手](QuickStartGuide.md)
+  * [为什么使用 SoftTimer ？ 它是如何工作的？](WhyHow.md)
+  * [特征及详情](Features.md)
