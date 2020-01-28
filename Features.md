@@ -209,15 +209,11 @@ Heartbeat 创建一个自定义的时间闪烁器并立即开始工作。详见 
 ## [Dimmer](https://github.com/prampec/arduino-softtimer/blob/master/src/Dimmer.h) ##
 
 
-With the dimmer you can easily adjust the PWM level of an output. The dimming is done in linear scale. Dimmer has some neat options, like hold/continue dimming, or revert direction any time. You can also set it up to be automatically stopped when limit (totally on/totally off) reached.
-
-See [Dimmer.h](https://github.com/prampec/arduino-softtimer/blob/master/src/Dimmer.h) header file for details.
+通过 dimmer 你可以轻松调整输出的 PWM 水平，调光器有些很好的选项，比如 hold/continue 或者任意时间反向调整，另外调光是线性的，你也可以通过设置 (totally on/totally off) 极限值来自动终止。详见 [Dimmer.h](https://github.com/prampec/arduino-softtimer/blob/master/src/Dimmer.h) 头文件。
 
 
 
 ## [FrequencyTask](https://github.com/prampec/arduino-softtimer/blob/master/src/FrequencyTask.h) ##
 
 
-Frequency task is just to play with the possibilities of the SoftTimer library. With the FrequencyTask you can generate square wave frequencies.
-
-See [FrequencyTask.h](https://github.com/prampec/arduino-softtimer/blob/master/src/FrequencyTask.h) header file for details.
+通过此任务可以生成方波。详见 [FrequencyTask.h](https://github.com/prampec/arduino-softtimer/blob/master/src/FrequencyTask.h) 头文件。
