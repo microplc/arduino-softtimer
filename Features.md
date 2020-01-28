@@ -104,7 +104,7 @@ void setup(void)
 
 ## [DelayRun](https://github.com/prampec/arduino-softtimer/blob/master/src/DelayRun.h) ##
 
-This class is to launch something after an amount of period. You can even specify a "followedBy" task, which will be run after this one has finished. See [DelayRun.h](https://github.com/prampec/arduino-softtimer/blob/master/src/DelayRun.h) header file for details.
+这个类用于一段时间后触发什么事情。你可以指定一个跟随任务，当前任务完成后运行此任务，详见 [DelayRun.h](https://github.com/prampec/arduino-softtimer/blob/master/src/DelayRun.h) 头文件。
 
 ```
 #include <SoftTimer.h>
@@ -149,18 +149,16 @@ boolean turnOn(Task* task) {
 ## [Debouncer](https://github.com/prampec/arduino-softtimer/blob/master/src/Debouncer.h) ##
 
 
-The debouncer task recommends to use the PciManager to manage the pin change interrupts. However you may handle interrupts manually.
-After creating the debouncer task, you do not need to register it to the Timer Manager.
+消抖任务推荐使用 PciManager 来管理引脚中断，然而你也可以手动处理中断，
+当你创建消抖任务之后，你无须注册它到时间管理器。
 
-If you are using the PciManager, you only have to register the debouncer to the PciManager.
+如果你使用 PciManager，你仅仅需要注册消抖到 PciManager 。
 
-If you would like to handle PCI manually, you need make the pciHandleInterrupt() function to be called on pin change.
+如果你喜欢手动处理引脚中断，你需要使得 pciHandleInterrupt() 函数在引脚变化时被执行即可。
 
-Debouncer will call your "onPressed" callback function when the button has a sable pressed state, and the "onReleased" on the end of the press. The "onReleased" callback also receive the total time passed on the pressing state.
+当按键处于按压状态时消抖将会调用你的 "onPressed" 回调函数，而结束按压时会调用 "onReleased" ，另外 "onReleased" 回调函数会收到总的被按压时间。
 
-You can use this debouncer both on Normally Opened and on Normally Closed circuits.
-
-See [Debouncer.h](https://github.com/prampec/arduino-softtimer/blob/master/src/Debouncer.h) header file for details.
+你可以应用消抖到常开和常闭电路都可以。详见 [Debouncer.h](https://github.com/prampec/arduino-softtimer/blob/master/src/Debouncer.h) 头文件。
 
 ```
 // -- Pin change interrupt
@@ -193,9 +191,7 @@ void onReleased(unsigned long pressTimespanMs) {
 ## [Rotary](https://github.com/prampec/arduino-softtimer/blob/master/src/Rotary.h) ##
 
 
-Rotary is a rotary encoder driver managed by SoftTimer.
-
-See [Rotary.h](https://github.com/prampec/arduino-softtimer/blob/master/src/Rotary.h) header file for details.
+Rotary 是一个旋转编码器管理器。详见 [Rotary.h](https://github.com/prampec/arduino-softtimer/blob/master/src/Rotary.h) 头文件。
 
 
 
@@ -203,11 +199,9 @@ See [Rotary.h](https://github.com/prampec/arduino-softtimer/blob/master/src/Rota
 ## [Heartbeat](https://github.com/prampec/arduino-softtimer/blob/master/src/Heartbeat.h) ##
 
 
-Heartbeat is a special blinker. It is intended to use a visual indicator for your project more easy.
+Heartbeat 是一个特殊的闪烁器。常用于方便指示你的项目状态。
 
-Heartbeat creates a custom timed BlinkTask and starts is immediately.
-
-See [Heartbeat.h](https://github.com/prampec/arduino-softtimer/blob/master/src/Heartbeat.h) header file for details.
+Heartbeat 创建一个自定义的时间闪烁器并立即开始工作。详见 [Heartbeat.h](https://github.com/prampec/arduino-softtimer/blob/master/src/Heartbeat.h) 头文件。
 
 
 
